@@ -1,0 +1,27 @@
+
+
+we talked to the customer, this is what he would like for Reward program management
+
+More than one point for every euro spent, we would like to channel sales towards some products in particular; e.g.
+we have 3000 products in the catalogue, well, only 300 products we would like to be entitled to receive points, to be quantified product by product,
+or if we can't even just based on the value. Let me know if I wasn't clear.
+
+the customer would like to assign a score manually, which is different for each individual product
+in the end or 300 or 3000 products at the development level does not change, create a field to enter the score
+therefore we will also have products with a zero score
+logically on the frontend of the app when the product has a zero score, the zero value should not be seen.
+The score will only be visible if it is greater than 0
+we are deciding now what the logic will be for taking the prizes from the catalogue
+
+
+
+we also defined the prize catalogue.
+customers can accumulate points and use them at their discretion to obtain rewards.
+ Ex: they have accumulated 100 points they can redeem
+a 50 point prize and he has 50 points left.
+Or he can take two products from the catalog each worth 50 points.
+
+
+ 
+
+ 

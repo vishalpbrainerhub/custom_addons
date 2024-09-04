@@ -1,0 +1,147 @@
+<odoo>
+
+    <menuitem id="menu_social_media" name="Social Media" sequence="10"/>
+
+    <!-- Post Model View -->
+    <record id="view_post_tree" model="ir.ui.view">
+        <field name="name">social_media.post.tree</field>
+        <field name="model">social_media.post</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="image" invisible="1"/>
+                <field name="description"/>
+                <field name="timestamp"/>
+                <field name="user_id"/>
+                <field name="image_view" widget="html"/>
+            </tree>
+        </field>
+        
+    </record>
+
+    <record id="view_post_form" model="ir.ui.view">
+        <field name="name">social_media.post.form</field>
+        <field name="model">social_media.post</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="user_id"/>
+                        <field name="image_view" widget="html"/>
+                        <field name="description"/>
+                        <field name="timestamp"/>
+                    </group>
+                    <notebook>
+                        <page string="Likes">
+                            <field name="likes">
+                                <tree>
+                                    <field name="user_id"/>
+                                    <field name="timestamp"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Comments">
+                            <field name="comments">
+                                <tree>
+                                    <field name="content"/>
+                                    <field name="user_id"/>
+                                    <field name="timestamp"/>
+                                    <field name="comment_likes" widget="many2many_tags">
+                                        <tree>
+                                            <field name="user_id"/>
+                                            <field name="timestamp"/>
+                                        </tree>
+                                    </field>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Reports">
+                            <field name="reports">
+                                <tree>
+                                    <field name="user_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_posts" model="ir.actions.act_window">
+        <field name="name">Posts</field>
+        <field name="res_model">social_media.post</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    
+    <menuitem id="menu_social_media_posts" name="Posts" parent="menu_social_media" action="action_posts" sequence="10"/>
+
+
+
+    <!-- user address -->
+
+
+    <!-- user address -->
+
+    <menuitem id="menu_social_media_addresses" name="Addresses" parent="menu_social_media" sequence="15"/>
+
+    <!-- Action to open Address view -->
+    <record id="action_addresses" model="ir.actions.act_window">
+        <field name="name">Addresses</field>
+        <field name="res_model">social_media.custom_address</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Link the action to the submenu -->
+    <menuitem id="submenu_social_media_addresses" name="Manage Addresses" parent="menu_social_media_addresses" action="action_addresses" sequence="10"/>
+
+    <record id="view_address_tree" model="ir.ui.view">
+        <field name="name">social_media.address.tree</field>
+        <field name="model">social_media.custom_address</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="user_id"/>
+                <field name="address"/>
+                <field name="city"/>
+                <field name="postal_code"/>
+                <field name="country_id"/>
+                <field name="default" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for Addresses -->
+    <record id="view_address_form" model="ir.ui.view">
+        <field name="name">social_media.address.form</field>
+        <field name="model">social_media.custom_address</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="user_id"/>
+                        <field name="address"/>
+                        <field name="continued_address"/>
+                        <field name="city"/>
+                        <field name="postal_code"/>
+                        <field name="village"/>
+                        <field name="state_id"/>
+                        <field name="country_id"/>
+                        <field name="default"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <!-- Actions for viewing all addresses and default address separately -->
+    <record id="action_default_addresses" model="ir.actions.act_window">
+        <field name="name">Default Address</field>
+        <field name="res_model">social_media.custom_address</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('default', '=', True)]</field>
+    </record>
+
+    <menuitem id="submenu_social_media_default_address" name="Default Address" parent="menu_social_media_addresses" action="action_default_addresses" sequence="5"/>
+
+</odoo>
